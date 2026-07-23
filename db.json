@@ -1,0 +1,1262 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "title": "ELDEN RING",
+      "genre": [
+        "RPG",
+        "오픈월드",
+        "액션"
+      ],
+      "platform": "PC, PS5",
+      "image": "/images/eldenring.jpg",
+      "description": "광활한 오픈월드를 탐험하며 강력한 보스와 맞서는 다크판타지 액션 RPG.",
+      "liked": false
+    },
+    {
+      "id": 2,
+      "title": "발로란트",
+      "genre": [
+        "FPS"
+      ],
+      "platform": "PC",
+      "image": "/images/valorant.png",
+      "description": "요원 스킬과 정밀 슈팅이 결합된 5대5 택티컬 FPS.",
+      "liked": false
+    },
+    {
+      "id": 3,
+      "title": "Stardew Valley",
+      "genre": [
+        "시뮬레이션",
+        "캐주얼"
+      ],
+      "platform": "PC, Switch",
+      "image": "/images/stardew.jpg",
+      "description": "농장을 가꾸고 마을 사람들과 관계를 쌓는 힐링 시뮬레이션.",
+      "liked": false
+    },
+    {
+      "id": 4,
+      "title": "PUBG: BATTLEGROUNDS",
+      "genre": [
+        "FPS",
+        "TPS",
+        "생존",
+        "배틀로얄"
+      ],
+      "platform": "PC, 모바일",
+      "image": "/images/pubg.jpg",
+      "description": "마지막 한 명이 남을 때까지 싸우는 배틀로얄 슈터.",
+      "liked": false
+    },
+    {
+      "id": 5,
+      "title": "젤다의 전설: 왕국의 눈물",
+      "genre": [
+        "오픈월드",
+        "액션",
+        "어드벤처"
+      ],
+      "platform": "Switch",
+      "image": "/images/zelda_totk.jpg",
+      "description": "하늘과 지하까지 확장된 광활한 세계를 탐험하는 어드벤처.",
+      "liked": false
+    },
+    {
+      "id": 6,
+      "title": "EA SPORTS FC™ 26",
+      "genre": [
+        "스포츠",
+        "시뮬레이션"
+      ],
+      "platform": "PC, PS5, Xbox",
+      "image": "/images/fc26.jpg",
+      "description": "실제 리그와 선수들을 담은 축구 시뮬레이션.",
+      "liked": false
+    },
+    {
+      "title": "Battlefield™ 6",
+      "genre": [
+        "FPS"
+      ],
+      "platform": "PC, PS5, Xbox",
+      "image": "/images/bf6.jpg",
+      "description": "육·해·공을 아우르는 대규모 전면전과 돌아온 싱글 캠페인을 통해 시리즈 특유의 압도적인 파괴와 혼돈을 선사하는 1인칭 슈팅 게임",
+      "liked": false,
+      "id": 7
+    },
+    {
+      "title": "Forza Horizon 6",
+      "genre": [
+        "레이싱",
+        "캐주얼",
+        "시뮬레이션"
+      ],
+      "platform": "PC, Xbox, PS5 (예정)",
+      "image": "/images/forza6.jpg",
+      "description": "압도적인 그래픽과 자유로운 커스터마이징, 질주의 쾌감을 선사하는 시리즈 최신작",
+      "liked": false,
+      "id": 8
+    },
+    {
+      "title": "스타크래프트: 리마스터",
+      "genre": [
+        "전략"
+      ],
+      "platform": "PC",
+      "image": "/images/starcraft.jpg",
+      "description": "세 개의 서로 다른 종족이 우주에서 치열한 패권을 다투는 역사적인 실시간 전략 게임",
+      "liked": false,
+      "id": 9
+    },
+    {
+      "title": "Rust",
+      "genre": [
+        "FPS",
+        "오픈월드",
+        "생존"
+      ],
+      "platform": "PC, PS4, Xbox",
+      "image": "/images/rust.jpg",
+      "description": "모든 플레이어가 적인 황폐한 섬에서 자원을 모으고 기지를 건설하며 살아남는 하드코어 오픈월드 생존 게임",
+      "liked": false,
+      "id": 10
+    },
+    {
+      "title": "WAR THUNDER",
+      "genre": [
+        "FPS",
+        "TPS",
+        "슈팅",
+        "비행",
+        "시뮬레이션"
+      ],
+      "platform": "PC, PS4, Xbox",
+      "image": "/images/warthunder.jpg",
+      "description": "제2차 세계대전부터 현대전까지의 항공기, 전차, 함선을 타고 거대한 전장에서 사실적인(풋) 전투를 즐기는 밀리터리 시뮬레이션 게임",
+      "liked": false,
+      "id": 11
+    },
+    {
+      "title": "톰 클랜시의 레인보우식스 시즈",
+      "genre": [
+        "FPS"
+      ],
+      "platform": "PC, PS4, Xbox",
+      "image": "/images/r6s.jpg",
+      "description": "극도의 긴장감 속에서 고유한 특수 능력을 가진 대원들을 활용해 벽과 바닥을 부수며 공격과 방어를 주고받는 5대5 전술 FPS 게임",
+      "liked": false,
+      "id": 12
+    },
+    {
+      "title": "오버워치™",
+      "genre": [
+        "FPS",
+        "액션",
+        "캐주얼"
+      ],
+      "platform": "PC, PS4, Xbox, Switch",
+      "image": "/images/overwatch.jpg",
+      "description": "개성 넘치는 영웅들의 고유 능력을 활용해 목표를 달성하는 5대5 팀 기반 슈팅 게임",
+      "liked": false,
+      "id": 13
+    },
+    {
+      "title": "Team Fortress 2",
+      "genre": [
+        "FPS",
+        "액션",
+        "캐주얼"
+      ],
+      "platform": "PC",
+      "image": "/images/tf2.jpg",
+      "description": "개성 넘치는 9가지 병과와 독특한 유머 감각이 어우러진 팀 기반 협동 1인칭 슈팅 게임",
+      "liked": false,
+      "id": 14
+    },
+    {
+      "title": "Sid Meier’s Civilization® VI",
+      "genre": [
+        "전략",
+        "시뮬레이션"
+      ],
+      "platform": "PC, PS4, Xbox, Switch, iOS, iPadOS, Android",
+      "image": "/images/civilization6.jpg",
+      "description": "역사 속 지도자가 되어 문명을 개척하고, 과학·문화·군사·종교 등 다양한 방법으로 전 세계를 제패하는 턴제 전략 시뮬레이션 게임",
+      "liked": false,
+      "id": 15
+    },
+    {
+      "title": "HELLDIVERS™ 2",
+      "genre": [
+        "TPS",
+        "캐주얼"
+      ],
+      "platform": "PC, PS5, Xbox",
+      "image": "/images/helldivers2.jpg",
+      "description": "은하계의 자유와 민주주의를 지키기 위해 최대 4인의 플레이어가 협동하여 외계 생명체에 맞서 싸우는 강렬한 3인칭 슈팅 게임",
+      "liked": false,
+      "id": 16
+    },
+    {
+      "title": "히어로즈 오브 더 스톰",
+      "genre": [
+        "AOS"
+      ],
+      "platform": "PC",
+      "image": "/images/hos.jpg",
+      "description": "블리자드 엔터테인먼트의 다양한 인기 영웅들이 총출동하여 펼치는 빠른 템포와 팀 협동 중심의 5 대 5 온라인 영웅 난투 게임",
+      "liked": false,
+      "id": 17
+    },
+    {
+      "title": "Euro Truck Simulator 2",
+      "genre": [
+        "운전",
+        "시뮬레이션"
+      ],
+      "platform": "PC",
+      "image": "/images/eurotruck2.jpg",
+      "description": "광활한 유럽 대륙을 배경으로 자신만의 운송 회사를 키우며 화물 배송의 여유를 즐기는 운전 시뮬레이션 게임",
+      "liked": false,
+      "id": 18
+    },
+    {
+      "title": "Yu-Gi-Oh! Master Duel",
+      "genre": [
+        "전략",
+        "카드/보드게임"
+      ],
+      "platform": "PC, PS4, Xbox, Switch, iOS, Android",
+      "image": "/images/ygomd.jpg",
+      "description": "코나미의 인기 TCG를 원작으로, 전 세계 플레이어들과 실시간으로 카드 대결을 즐길 수 있는 디지털 수집형 카드 게임",
+      "liked": false,
+      "id": 19
+    },
+    {
+      "title": "Project Zomboid",
+      "genre": [
+        "RPG",
+        "오픈월드",
+        "호러",
+        "생존",
+        "시뮬레이션"
+      ],
+      "platform": "PC",
+      "image": "/images/pz.jpg",
+      "description": "좀비 바이러스가 창궐한 녹스 카운티에서 물자를 파밍하고 은신처를 구축하며, 자신만의 생존 방법을 찾아 나가는 극도로 현실적인 하드코어 샌드박스 좀비 생존 게임",
+      "liked": false,
+      "id": 20
+    },
+    {
+      "title": "Fallout: New Vegas",
+      "genre": [
+        "RPG",
+        "FPS",
+        "TPS"
+      ],
+      "platform": "PC, PS3, Xbox",
+      "image": "/images/fonv.jpg",
+      "description": "핵전쟁 이후 황폐화된 네바다 사막을 배경으로, 배달부가 되어 거대 세력 간의 권력 투쟁 속에서 자신과 도시의 운명을 결정짓는 포스트 아포칼립스 오픈월드 RPG",
+      "liked": false,
+      "id": 21
+    },
+    {
+      "title": "Left 4 Dead 2",
+      "genre": [
+        "FPS",
+        "액션",
+        "호러",
+        "생존"
+      ],
+      "platform": "PC, Xbox",
+      "image": "/images/l4d2.jpg",
+      "description": "최대 4명의 생존자가 힘을 합쳐 수많은 좀비를 뚫고 안전하게 탈출하는 것을 목표로 하는 협동 1인칭 슈팅 게임",
+      "liked": false,
+      "id": 22
+    },
+    {
+      "title": "ACE COMBAT™ 7: SKIES UNKNOWN",
+      "genre": [
+        "비행",
+        "슈팅"
+      ],
+      "platform": "PC, PS4, Xbox, Switch",
+      "image": "/images/acecombat7.jpg",
+      "description": "가상 세계관을 배경으로, 플레이어가 직접 전투기 조종사가 되어 구름과 기상을 활용한 입체적이고 박진감 넘치는 공중전을 체험할 수 있는 시리즈 최신작",
+      "liked": false,
+      "id": 23
+    },
+    {
+      "title": "아머드 코어 VI 루비콘의 화염",
+      "genre": [
+        "TPS",
+        "액션"
+      ],
+      "platform": "PC, PS4, Xbox",
+      "image": "/images/acvi.jpg",
+      "description": "프롬 소프트웨어가 선보이는, 다양한 파츠를 조립해 나만의 로봇을 만들고 초고속 메카닉 액션으로 미사일과 근접 무기가 난무하는 전장을 누비며 거대 보스와 사투를 벌이는 짜릿한 용병의 이야기",
+      "liked": false,
+      "id": 24
+    },
+    {
+      "title": "Minecraft",
+      "genre": [
+        "오픈월드",
+        "샌드박스",
+        "생존"
+      ],
+      "platform": "PC, PS4, Xbox, Switch, iOS, Android",
+      "image": "/images/minecraft.jpg",
+      "description": "네모난 블록으로 이루어진 가상 세계에서 자유롭게 건물을 짓거나 모험을 즐기며 자신만의 세상을 만들어가는 오픈 월드 샌드박스 게임",
+      "liked": false,
+      "id": 25
+    },
+    {
+      "title": "Garry's Mod",
+      "genre": [
+        "샌드박스"
+      ],
+      "platform": "PC",
+      "image": "/images/gmod.jpg",
+      "description": "다양한 도구와 물리 엔진을 활용해 사물을 조작하고 창작물을 만들거나, 유저들이 제작한 수많은 커스텀 모드 및 미니게임을 즐길 수 있는 자유도 높은 샌드박스 게임",
+      "rating": 0,
+      "liked": false,
+      "id": 26
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "gameId": 1,
+      "author": "현영",
+      "rating": 5,
+      "content": "보스전이 예술이에요."
+    },
+    {
+      "id": 2,
+      "gameId": 1,
+      "author": "민준",
+      "rating": 5,
+      "content": "길을 잃는 것도 재미있어요."
+    },
+    {
+      "id": 3,
+      "gameId": 1,
+      "author": "지안",
+      "rating": 5,
+      "content": "오픈월드 탐험이 정말 자유로워요."
+    },
+    {
+      "id": 4,
+      "gameId": 1,
+      "author": "서준",
+      "rating": 4,
+      "content": "재밌긴 한데 난이도가 살인적이에요."
+    },
+    {
+      "id": 5,
+      "gameId": 1,
+      "author": "유진",
+      "rating": 5,
+      "content": "보스 하나 잡을 때마다 성취감이 엄청나요."
+    },
+    {
+      "id": 6,
+      "gameId": 1,
+      "author": "재현",
+      "rating": 4,
+      "content": "출시 초반엔 프레임이 좀 불안정했는데 패치로 많이 좋아졌어요."
+    },
+    {
+      "id": 7,
+      "gameId": 2,
+      "author": "서연",
+      "rating": 4,
+      "content": "팀워크가 중요해서 몰입돼요."
+    },
+    {
+      "id": 8,
+      "gameId": 2,
+      "author": "나연",
+      "rating": 3,
+      "content": "본섭 판정 좀 애매할 때가 있어요."
+    },
+    {
+      "id": 9,
+      "gameId": 2,
+      "author": "승우",
+      "rating": 4,
+      "content": "요원 조합 짜는 재미가 쏠쏠해요."
+    },
+    {
+      "id": 10,
+      "gameId": 2,
+      "author": "다인",
+      "rating": 3,
+      "content": "핵쟁이 가끔 만나는게 스트레스예요."
+    },
+    {
+      "id": 11,
+      "gameId": 3,
+      "author": "지호",
+      "rating": 5,
+      "content": "시간 순삭 게임이에요."
+    },
+    {
+      "id": 12,
+      "gameId": 3,
+      "author": "하은",
+      "rating": 4,
+      "content": "작물 키우는 재미가 쏠쏠해요."
+    },
+    {
+      "id": 13,
+      "gameId": 3,
+      "author": "현우",
+      "rating": 5,
+      "content": "힐링이 필요할 때마다 켜게 돼요."
+    },
+    {
+      "id": 14,
+      "gameId": 3,
+      "author": "소민",
+      "rating": 5,
+      "content": "마을 사람들 이벤트 하나하나가 다 정성스러워요."
+    },
+    {
+      "id": 15,
+      "gameId": 3,
+      "author": "준영",
+      "rating": 5,
+      "content": "혼자 해도 재밌고 멀티도 잘 돼있어요."
+    },
+    {
+      "id": 16,
+      "gameId": 4,
+      "author": "우진",
+      "rating": 4,
+      "content": "긴장감이 최고예요."
+    },
+    {
+      "id": 17,
+      "gameId": 4,
+      "author": "예준",
+      "rating": 2,
+      "content": "핵쟁이가 너무 많아요."
+    },
+    {
+      "id": 18,
+      "gameId": 4,
+      "author": "수빈",
+      "rating": 3,
+      "content": "무료화 이후로 매치 퀄리티가 들쭉날쭉해요."
+    },
+    {
+      "id": 19,
+      "gameId": 4,
+      "author": "동현",
+      "rating": 4,
+      "content": "치킨 먹을 때 손이 떨려요."
+    },
+    {
+      "id": 20,
+      "gameId": 4,
+      "author": "지민",
+      "rating": 3,
+      "content": "최적화가 아직도 아쉬워요."
+    },
+    {
+      "id": 21,
+      "gameId": 4,
+      "author": "예린",
+      "rating": 4,
+      "content": "긴장감 하나는 여전히 최고예요."
+    },
+    {
+      "id": 22,
+      "gameId": 4,
+      "author": "도윤",
+      "rating": 2,
+      "content": "핵 신고해도 계속 만나져요."
+    },
+    {
+      "id": 23,
+      "gameId": 5,
+      "author": "현영",
+      "rating": 5,
+      "content": "창작 시스템이 정말 신선해요."
+    },
+    {
+      "id": 24,
+      "gameId": 5,
+      "author": "수아",
+      "rating": 5,
+      "content": "울트라핸드로 뭐든 만들 수 있어서 놀라워요."
+    },
+    {
+      "id": 25,
+      "gameId": 5,
+      "author": "시우",
+      "rating": 5,
+      "content": "하이랄 전체가 다 놀이터 같아요."
+    },
+    {
+      "id": 26,
+      "gameId": 5,
+      "author": "채원",
+      "rating": 4,
+      "content": "사람 몰리는 지역에서 가끔 프레임이 떨어져요."
+    },
+    {
+      "id": 27,
+      "gameId": 5,
+      "author": "다은",
+      "rating": 5,
+      "content": "전작보다 확실히 스케일이 커졌어요."
+    },
+    {
+      "id": 28,
+      "gameId": 5,
+      "author": "태현",
+      "rating": 5,
+      "content": "퍼즐 푸는 재미가 끝이 없어요."
+    },
+    {
+      "id": 29,
+      "gameId": 5,
+      "author": "소율",
+      "rating": 4,
+      "content": "재밌는데 진행이 좀 길어서 지칠 때도 있어요."
+    },
+    {
+      "id": 30,
+      "gameId": 5,
+      "author": "은우",
+      "rating": 5,
+      "content": "젤다 시리즈 최고작이라고 생각해요."
+    },
+    {
+      "id": 31,
+      "gameId": 6,
+      "author": "재현",
+      "rating": 3,
+      "content": "그래픽은 좋은데 얼팀 과금 유도가 심해요."
+    },
+    {
+      "id": 32,
+      "gameId": 6,
+      "author": "나연",
+      "rating": 4,
+      "content": "실제 선수들 움직임이 꽤 자연스러워졌어요."
+    },
+    {
+      "id": 33,
+      "gameId": 6,
+      "author": "승우",
+      "rating": 3,
+      "content": "매년 비슷한 느낌이라 새로움은 적어요."
+    },
+    {
+      "id": 34,
+      "gameId": 7,
+      "author": "다인",
+      "rating": 4,
+      "content": "파괴 연출이 진짜 압도적이에요."
+    },
+    {
+      "id": 35,
+      "gameId": 7,
+      "author": "현우",
+      "rating": 3,
+      "content": "출시 초반 최적화가 아쉬워요."
+    },
+    {
+      "id": 36,
+      "gameId": 7,
+      "author": "소민",
+      "rating": 5,
+      "content": "오랜만에 나온 싱글 캠페인이 반가웠어요."
+    },
+    {
+      "id": 37,
+      "gameId": 7,
+      "author": "준영",
+      "rating": 4,
+      "content": "대규모 전투 스케일이 확실히 커요."
+    },
+    {
+      "id": 38,
+      "gameId": 7,
+      "author": "예준",
+      "rating": 3,
+      "content": "서버 안정성이 좀 더 개선됐으면 해요."
+    },
+    {
+      "id": 39,
+      "gameId": 8,
+      "author": "수빈",
+      "rating": 5,
+      "content": "그래픽이 미쳤어요."
+    },
+    {
+      "id": 40,
+      "gameId": 8,
+      "author": "동현",
+      "rating": 5,
+      "content": "커스터마이징 옵션이 정말 다양해요."
+    },
+    {
+      "id": 41,
+      "gameId": 8,
+      "author": "지민",
+      "rating": 4,
+      "content": "레이싱 손맛이 부드러워요."
+    },
+    {
+      "id": 42,
+      "gameId": 8,
+      "author": "예린",
+      "rating": 4,
+      "content": "맵이 넓어서 드라이브만 해도 재밌어요."
+    },
+    {
+      "id": 43,
+      "gameId": 9,
+      "author": "도윤",
+      "rating": 5,
+      "content": "추억 보정 없이도 재밌는 명작이에요."
+    },
+    {
+      "id": 44,
+      "gameId": 9,
+      "author": "채원",
+      "rating": 4,
+      "content": "빌드오더 외우는 재미가 여전해요."
+    },
+    {
+      "id": 45,
+      "gameId": 9,
+      "author": "다은",
+      "rating": 5,
+      "content": "그래픽만 리마스터됐는데 게임성은 그대로라 좋아요."
+    },
+    {
+      "id": 46,
+      "gameId": 9,
+      "author": "태현",
+      "rating": 4,
+      "content": "인구수 관리가 손이 많이 가요."
+    },
+    {
+      "id": 47,
+      "gameId": 9,
+      "author": "소율",
+      "rating": 5,
+      "content": "세 종족 밸런스가 지금 봐도 훌륭해요."
+    },
+    {
+      "id": 48,
+      "gameId": 10,
+      "author": "은우",
+      "rating": 3,
+      "content": "적응하기 전까진 계속 죽어요."
+    },
+    {
+      "id": 49,
+      "gameId": 10,
+      "author": "재현",
+      "rating": 5,
+      "content": "기지 짓고 방어하는 재미가 중독적이에요."
+    },
+    {
+      "id": 50,
+      "gameId": 10,
+      "author": "나연",
+      "rating": 2,
+      "content": "초반 스팀롤링이 너무 심해요."
+    },
+    {
+      "id": 51,
+      "gameId": 10,
+      "author": "승우",
+      "rating": 4,
+      "content": "팀원들이랑 하면 진짜 몰입돼요."
+    },
+    {
+      "id": 52,
+      "gameId": 10,
+      "author": "다인",
+      "rating": 3,
+      "content": "혼자 하기엔 너무 가혹해요."
+    },
+    {
+      "id": 53,
+      "gameId": 10,
+      "author": "현우",
+      "rating": 4,
+      "content": "긴장감만큼은 최고의 생존 게임이에요."
+    },
+    {
+      "id": 54,
+      "gameId": 11,
+      "author": "나",
+      "rating": 1,
+      "content": "이거 게임아님"
+    },
+    {
+      "id": 55,
+      "gameId": 11,
+      "author": "소민",
+      "rating": 4,
+      "content": "탈것 종류가 어마어마하게 많아요."
+    },
+    {
+      "id": 56,
+      "gameId": 11,
+      "author": "준영",
+      "rating": 3,
+      "content": "입문 장벽이 꽤 높아요."
+    },
+    {
+      "id": 57,
+      "gameId": 11,
+      "author": "예준",
+      "rating": 4,
+      "content": "전차전 할 때 긴장감이 남달라요."
+    },
+    {
+      "id": 58,
+      "gameId": 11,
+      "author": "수빈",
+      "rating": 3,
+      "content": "과금 요소가 좀 아쉬워요."
+    },
+    {
+      "id": 59,
+      "gameId": 12,
+      "author": "동현",
+      "rating": 5,
+      "content": "전술적으로 정말 깊이 있는 게임이에요."
+    },
+    {
+      "id": 60,
+      "gameId": 12,
+      "author": "지민",
+      "rating": 4,
+      "content": "요원별 특수 능력 조합이 재밌어요."
+    },
+    {
+      "id": 61,
+      "gameId": 12,
+      "author": "예린",
+      "rating": 3,
+      "content": "핵쟁이 만날 때가 종종 있어요."
+    },
+    {
+      "id": 62,
+      "gameId": 12,
+      "author": "도윤",
+      "rating": 4,
+      "content": "벽 부수는 손맛이 여전히 좋아요."
+    },
+    {
+      "id": 63,
+      "gameId": 13,
+      "author": "채원",
+      "rating": 4,
+      "content": "영웅 각자 개성이 뚜렷해서 재밌어요."
+    },
+    {
+      "id": 64,
+      "gameId": 13,
+      "author": "다은",
+      "rating": 3,
+      "content": "5대5로 바뀌고 나서 밸런스가 좀 아쉬워요."
+    },
+    {
+      "id": 65,
+      "gameId": 13,
+      "author": "태현",
+      "rating": 4,
+      "content": "협동 플레이할 때 재미가 배가돼요."
+    },
+    {
+      "id": 66,
+      "gameId": 13,
+      "author": "소율",
+      "rating": 2,
+      "content": "과금 요소가 너무 많아졌어요."
+    },
+    {
+      "id": 67,
+      "gameId": 13,
+      "author": "은우",
+      "rating": 4,
+      "content": "여전히 손맛 하나는 최고예요."
+    },
+    {
+      "id": 68,
+      "gameId": 13,
+      "author": "재현",
+      "rating": 3,
+      "content": "신규 영웅 밸런스 조정이 느려요."
+    },
+    {
+      "id": 69,
+      "gameId": 14,
+      "author": "나연",
+      "rating": 5,
+      "content": "세월이 지나도 여전히 재밌는 명작이에요."
+    },
+    {
+      "id": 70,
+      "gameId": 14,
+      "author": "승우",
+      "rating": 2,
+      "content": "요즘 봇이 너무 많아서 매치가 엉망이에요."
+    },
+    {
+      "id": 71,
+      "gameId": 14,
+      "author": "다인",
+      "rating": 5,
+      "content": "병과별 개성이 확실해서 질리지 않아요."
+    },
+    {
+      "id": 72,
+      "gameId": 14,
+      "author": "현우",
+      "rating": 4,
+      "content": "유머러스한 분위기가 좋아요."
+    },
+    {
+      "id": 73,
+      "gameId": 14,
+      "author": "소민",
+      "rating": 3,
+      "content": "관리가 좀 더 잘 됐으면 좋겠어요."
+    },
+    {
+      "id": 74,
+      "gameId": 15,
+      "author": "준영",
+      "rating": 5,
+      "content": "한 턴만 더의 늪에 빠지게 만드는 게임이에요."
+    },
+    {
+      "id": 75,
+      "gameId": 15,
+      "author": "예준",
+      "rating": 4,
+      "content": "문명별 개성이 확실해서 여러 번 해도 재밌어요."
+    },
+    {
+      "id": 76,
+      "gameId": 15,
+      "author": "수빈",
+      "rating": 3,
+      "content": "후반부로 갈수록 턴이 너무 길어져요."
+    },
+    {
+      "id": 77,
+      "gameId": 15,
+      "author": "동현",
+      "rating": 5,
+      "content": "전략의 깊이가 정말 훌륭해요."
+    },
+    {
+      "id": 78,
+      "gameId": 15,
+      "author": "지민",
+      "rating": 4,
+      "content": "AI가 가끔 이상한 선택을 해요."
+    },
+    {
+      "id": 79,
+      "gameId": 16,
+      "author": "예린",
+      "rating": 5,
+      "content": "민주주의를 위하여! 협동 플레이가 정말 재밌어요."
+    },
+    {
+      "id": 80,
+      "gameId": 16,
+      "author": "도윤",
+      "rating": 4,
+      "content": "친구들이랑 하면 웃음이 끊이질 않아요."
+    },
+    {
+      "id": 81,
+      "gameId": 16,
+      "author": "채원",
+      "rating": 3,
+      "content": "초반엔 서버 접속이 힘들었어요."
+    },
+    {
+      "id": 82,
+      "gameId": 16,
+      "author": "다은",
+      "rating": 5,
+      "content": "무기 타격감이 진짜 시원해요."
+    },
+    {
+      "id": 83,
+      "gameId": 16,
+      "author": "태현",
+      "rating": 4,
+      "content": "패치로 밸런스가 계속 좋아지고 있어요."
+    },
+    {
+      "id": 84,
+      "gameId": 16,
+      "author": "소율",
+      "rating": 5,
+      "content": "혼돈 그 자체인데 그게 매력이에요."
+    },
+    {
+      "id": 85,
+      "gameId": 17,
+      "author": "은우",
+      "rating": 4,
+      "content": "블리자드 IP 총출동이라 반가워요."
+    },
+    {
+      "id": 86,
+      "gameId": 17,
+      "author": "재현",
+      "rating": 3,
+      "content": "업데이트가 뜸해서 아쉬워요."
+    },
+    {
+      "id": 87,
+      "gameId": 17,
+      "author": "나연",
+      "rating": 5,
+      "content": "다른 모바보다 진입장벽이 낮아서 좋아요."
+    },
+    {
+      "id": 88,
+      "gameId": 17,
+      "author": "승우",
+      "rating": 3,
+      "content": "서버 인구가 줄어든 게 느껴져요."
+    },
+    {
+      "id": 89,
+      "gameId": 18,
+      "author": "다인",
+      "rating": 5,
+      "content": "운전하면서 힐링하기 딱 좋아요."
+    },
+    {
+      "id": 90,
+      "gameId": 18,
+      "author": "현우",
+      "rating": 4,
+      "content": "유럽 지리를 게임으로 배우는 느낌이에요."
+    },
+    {
+      "id": 91,
+      "gameId": 18,
+      "author": "소민",
+      "rating": 5,
+      "content": "잔잔한 배경음악이 정말 좋아요."
+    },
+    {
+      "id": 92,
+      "gameId": 18,
+      "author": "준영",
+      "rating": 4,
+      "content": "회사 키우는 재미가 은근 중독적이에요."
+    },
+    {
+      "id": 93,
+      "gameId": 19,
+      "author": "예준",
+      "rating": 4,
+      "content": "카드 수집하는 재미가 쏠쏠해요."
+    },
+    {
+      "id": 94,
+      "gameId": 19,
+      "author": "수빈",
+      "rating": 3,
+      "content": "메타 덱 아니면 이기기 힘들어요."
+    },
+    {
+      "id": 95,
+      "gameId": 19,
+      "author": "동현",
+      "rating": 5,
+      "content": "옛날 카드들도 다 쓸 수 있어서 좋아요."
+    },
+    {
+      "id": 96,
+      "gameId": 19,
+      "author": "지민",
+      "rating": 3,
+      "content": "신규 팩 나올 때마다 과금 압박이 있어요."
+    },
+    {
+      "id": 97,
+      "gameId": 19,
+      "author": "예린",
+      "rating": 4,
+      "content": "듀얼 연출이 화려해서 볼 맛이 나요."
+    },
+    {
+      "id": 98,
+      "gameId": 20,
+      "author": "도윤",
+      "rating": 5,
+      "content": "죽음이 일상인 게임인데 그게 매력이에요."
+    },
+    {
+      "id": 99,
+      "gameId": 20,
+      "author": "채원",
+      "rating": 4,
+      "content": "생존 시뮬레이션 디테일이 정말 세밀해요."
+    },
+    {
+      "id": 100,
+      "gameId": 20,
+      "author": "다은",
+      "rating": 3,
+      "content": "처음엔 뭘 해야 할지 감이 안 잡혀요."
+    },
+    {
+      "id": 101,
+      "gameId": 20,
+      "author": "태현",
+      "rating": 5,
+      "content": "친구들이랑 하면 몇 시간이 순식간에 가요."
+    },
+    {
+      "id": 102,
+      "gameId": 20,
+      "author": "소율",
+      "rating": 4,
+      "content": "좀비보다 굶어 죽는 게 더 무서워요."
+    },
+    {
+      "id": 103,
+      "gameId": 20,
+      "author": "은우",
+      "rating": 5,
+      "content": "모드 지원이 훌륭해서 오래 즐길 수 있어요."
+    },
+    {
+      "id": 104,
+      "gameId": 21,
+      "author": "재현",
+      "rating": 5,
+      "content": "선택과 결과가 정말 묵직하게 다가와요."
+    },
+    {
+      "id": 105,
+      "gameId": 21,
+      "author": "나연",
+      "rating": 4,
+      "content": "세계관과 대사 퀄리티가 시리즈 최고예요."
+    },
+    {
+      "id": 106,
+      "gameId": 21,
+      "author": "승우",
+      "rating": 3,
+      "content": "버그가 좀 있지만 그마저도 매력이에요."
+    },
+    {
+      "id": 107,
+      "gameId": 21,
+      "author": "다인",
+      "rating": 5,
+      "content": "여러 번 플레이해도 매번 다른 경험이에요."
+    },
+    {
+      "id": 108,
+      "gameId": 21,
+      "author": "현우",
+      "rating": 4,
+      "content": "모하비 사막의 분위기가 인상 깊어요."
+    },
+    {
+      "id": 109,
+      "gameId": 22,
+      "author": "소민",
+      "rating": 5,
+      "content": "오래된 게임인데 아직도 이만한 협동 게임이 없어요."
+    },
+    {
+      "id": 110,
+      "gameId": 22,
+      "author": "준영",
+      "rating": 4,
+      "content": "특수 감염자 만날 때마다 긴장돼요."
+    },
+    {
+      "id": 111,
+      "gameId": 22,
+      "author": "예준",
+      "rating": 5,
+      "content": "친구들이랑 하면 웃음이 끊이질 않아요."
+    },
+    {
+      "id": 112,
+      "gameId": 22,
+      "author": "수빈",
+      "rating": 4,
+      "content": "캠페인 다 달라서 질리지 않아요."
+    },
+    {
+      "id": 113,
+      "gameId": 22,
+      "author": "동현",
+      "rating": 3,
+      "content": "요즘 인구가 줄어서 매칭이 좀 아쉬워요."
+    },
+    {
+      "id": 114,
+      "gameId": 23,
+      "author": "지민",
+      "rating": 5,
+      "content": "구름 속을 뚫고 나가는 연출이 압권이에요."
+    },
+    {
+      "id": 115,
+      "gameId": 23,
+      "author": "예린",
+      "rating": 4,
+      "content": "공중전 손맛이 짜릿해요."
+    },
+    {
+      "id": 116,
+      "gameId": 23,
+      "author": "도윤",
+      "rating": 5,
+      "content": "VR로 하면 완전히 다른 게임이 돼요."
+    },
+    {
+      "id": 117,
+      "gameId": 23,
+      "author": "채원",
+      "rating": 3,
+      "content": "스토리가 조금 유치하게 느껴질 때도 있어요."
+    },
+    {
+      "id": 118,
+      "gameId": 24,
+      "author": "다은",
+      "rating": 5,
+      "content": "커스터마이징하는 재미가 정말 커요."
+    },
+    {
+      "id": 119,
+      "gameId": 24,
+      "author": "태현",
+      "rating": 4,
+      "content": "보스전 난이도가 상당히 짜릿해요."
+    },
+    {
+      "id": 120,
+      "gameId": 24,
+      "author": "소율",
+      "rating": 3,
+      "content": "초반엔 조작이 낯설어서 고생했어요."
+    },
+    {
+      "id": 121,
+      "gameId": 24,
+      "author": "은우",
+      "rating": 5,
+      "content": "속도감 있는 전투가 프롬 소프트웨어답게 훌륭해요."
+    },
+    {
+      "id": 122,
+      "gameId": 24,
+      "author": "재현",
+      "rating": 4,
+      "content": "기체 조합 연구하는 재미가 쏠쏠해요."
+    },
+    {
+      "id": 123,
+      "gameId": 25,
+      "author": "나연",
+      "rating": 5,
+      "content": "몇 년째 하는데도 안 질려요."
+    },
+    {
+      "id": 124,
+      "gameId": 25,
+      "author": "승우",
+      "rating": 5,
+      "content": "상상하는 건 다 만들 수 있어요."
+    },
+    {
+      "id": 125,
+      "gameId": 25,
+      "author": "다인",
+      "rating": 4,
+      "content": "멀티하면 친구들이랑 몇 시간이 순식간에 가요."
+    },
+    {
+      "id": 126,
+      "gameId": 25,
+      "author": "현우",
+      "rating": 5,
+      "content": "레드스톤 파는 재미가 끝이 없어요."
+    },
+    {
+      "id": 127,
+      "gameId": 25,
+      "author": "소민",
+      "rating": 4,
+      "content": "업데이트마다 새로운 콘텐츠가 꾸준히 나와요."
+    },
+    {
+      "id": 128,
+      "gameId": 25,
+      "author": "준영",
+      "rating": 5,
+      "content": "아이랑 같이 해도 정말 좋아요."
+    },
+    {
+      "id": 129,
+      "gameId": 25,
+      "author": "예준",
+      "rating": 5,
+      "content": "자유도가 여전히 최고인 게임이에요."
+    },
+    {
+      "id": 130,
+      "gameId": 25,
+      "author": "수빈",
+      "rating": 4,
+      "content": "서버 꾸미는 재미에 시간 가는 줄 몰라요."
+    },
+    {
+      "id": 131,
+      "gameId": 26,
+      "author": "소영",
+      "rating": 4,
+      "content": "자유도가 정말 최고에요."
+    },
+    {
+      "id": 132,
+      "gameId": 26,
+      "author": "예준",
+      "rating": 4,
+      "content": "별 거 없으면서도 시간 가는 줄 몰랐어요."
+    },
+    {
+      "id": 132,
+      "gameId": 26,
+      "author": "예준",
+      "rating": 3,
+      "content": "뭘 해야할진 모르겠는데 재미는 있어요."
+    }
+  ]
+}
