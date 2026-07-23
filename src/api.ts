@@ -1,6 +1,7 @@
 import type { Game, Review } from "./types";
 
-const BASE_URL = "http://localhost:3000";
+// 배포 환경에서는 .env.production의 VITE_API_URL을 사용, 없으면 로컬 개발 주소로 대체
+const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
 // 게임 목록 조회 (GET /games)
 export async function getGames(): Promise<Game[]> {
