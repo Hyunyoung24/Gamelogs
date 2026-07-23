@@ -55,6 +55,10 @@ function BestRanking({ games, reviews }: BestRankingProps) {
                     const rating = averageRating(game.id, reviews);
                     return (
                         <div className="rank-row" key={game.id} onClick={() => setSelectedId(game.id)}>
+                            <div
+                                className="rank-cover"
+                                style={{ backgroundImage: `url('${game.image}')` }}
+                            />
                             <span className="rank-num">{index + 1}</span>
                             <div className="rank-info">
                                 <p className="rank-title">{game.title}</p>
