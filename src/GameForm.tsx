@@ -18,7 +18,9 @@ function GameForm({ games, onSave, onDelete }: GameFormProps) {
     const [genre, setGenre] = useState<string[]>(game?.genre ?? []);
     const [platform, setPlatform ] = useState(game?.platform ?? "");
     const [image, setImage] = useState(
-        game?.image?.replace(/^\/images\//, "").replace(/\.jpg$/, "") ?? ""
+        game?.image?.startsWith("http")
+            ? game.image
+            : game?.image?.replace(/^\/images\//, "").replace(/\.jpg$/, "") ?? ""
     );
     const [description, setDescription ] = useState(game?.description ?? "");
 
@@ -38,7 +40,11 @@ function GameForm({ games, onSave, onDelete }: GameFormProps) {
             title,
             genre,
             platform,
-            image: image.trim() ? `/images/${image.trim()}.jpg` : "",
+            image: image.trim()
+                ? image.trim().startsWith("http")
+                    ? image.trim()
+                    : `/images/${image.trim()}.jpg`
+                : "",
             description,
         });
     };
@@ -84,10 +90,10 @@ function GameForm({ games, onSave, onDelete }: GameFormProps) {
                 </div>
             </div>
             <div className="field">
-                <label>커버 이미지 파일명 (확장자 생략)</label>
+                <label>커버 이미지 파일명 또는 URL</label>
                 <input
                     type="text"
-                    placeholder="예: pinball"
+                    placeholder="예: pinball 또는 https://pinball.jpg"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
                 />
