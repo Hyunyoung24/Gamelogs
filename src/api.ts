@@ -3,6 +3,41 @@ import type { Game, Review } from "./types";
 // 배포 환경에서는 .env.production의 VITE_API_URL을 사용, 없으면 로컬 개발 주소로 대체
 const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
+// 실패한 응답의 본문을 읽어 에러 메시지를 만든다.
+// statusText는 HTTP/2 등 일부 환경에서 빈 문자열일 수 있어, 본문(res.text())을 우선 사용하고 없으면 statusText로 대체한다.
+// res.text() 자체가 실패(네트워크 오류 등)해도 상태 코드는 남길 수 있도록 빈 문자열로 폴백한다.
+// body와 statusText가 둘 다 비어있는 경우(HTTP/2 등)를 대비해 마지막으로 리터럴 문자열로 폴백한다.
+/** @internal 단위 테스트에서 에러 포맷을 직접 검증하기 위해서만 export됨. 일반 코드는 parseResponse/assertOk를 통해 간접적으로 사용할 것. */
+export async function createApiError(res: Response): Promise<Error> {
+    const body = await res.text().catch(() => "");
+    return new Error(`API 요청 실패: ${res.status} ${body || res.statusText || "(메시지 없음)"}`);
+}
+
+// 응답이 실패(res.ok === false)면 에러를 던지고, 성공하면 JSON을 파싱해서 반환한다.
+// fetch는 4xx/5xx여도 reject하지 않기 때문에, 호출부에서 이걸로 감싸지 않으면 실패한 요청도 조용히 성공한 것처럼 처리된다.
+// 주의: 반환 타입 T는 런타임에 검증되지 않는 타입 단언이다. json-server가 항상 정해진 형태의 JSON을 준다는
+// 전제로 사용하며, 스키마 검증이 필요해지면 이 지점에 Zod 등을 도입해야 한다.
+// 주의: Response의 body 스트림은 한 번만 읽을 수 있다. 이 함수가 res를 소비하므로, 호출부는 이후
+// 같은 res 객체로 res.text()/res.json()을 다시 호출하면 안 된다.
+export async function parseResponse<T>(res: Response): Promise<T> {
+    if (!res.ok) {
+        throw await createApiError(res);
+    }
+    try {
+        return (await res.json()) as T;
+    } catch (e) {
+        const message = e instanceof Error ? e.message : String(e);
+        throw new Error(`JSON 파싱 실패: ${res.status} - ${message}`, { cause: e });
+    }
+}
+
+// 본문이 없는 응답(DELETE 등)에서 실패 여부만 확인할 때 사용한다.
+export async function assertOk(res: Response): Promise<void> {
+    if (!res.ok) {
+        throw await createApiError(res);
+    }
+}
+
 // 게임 목록 조회 (GET /games)
 export async function getGames(): Promise<Game[]> {
     const res = await fetch(`${BASE_URL}/games`);
