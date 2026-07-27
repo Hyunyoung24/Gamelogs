@@ -3,6 +3,22 @@ import type { Game, Review } from "./types";
 // 배포 환경에서는 .env.production의 VITE_API_URL을 사용, 없으면 로컬 개발 주소로 대체
 const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
+// 응답이 실패(res.ok === false)면 에러를 던지고, 성공하면 JSON을 파싱해서 반환한다.
+// fetch는 4xx/5xx여도 reject하지 않기 때문에, 호출부에서 이걸로 감싸지 않으면 실패한 요청도 조용히 성공한 것처럼 처리된다.
+export async function parseResponse<T>(res: Response): Promise<T> {
+    if (!res.ok) {
+        throw new Error(`API 요청 실패: ${res.status} ${res.statusText}`);
+    }
+    return res.json();
+}
+
+// 본문이 없는 응답(DELETE 등)에서 실패 여부만 확인할 때 사용한다.
+export function assertOk(res: Response): void {
+    if (!res.ok) {
+        throw new Error(`API 요청 실패: ${res.status} ${res.statusText}`);
+    }
+}
+
 // 게임 목록 조회 (GET /games)
 export async function getGames(): Promise<Game[]> {
     const res = await fetch(`${BASE_URL}/games`);
