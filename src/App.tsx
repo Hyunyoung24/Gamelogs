@@ -19,14 +19,32 @@ function App() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getGames()
-            .then(setGames)
-            .catch((e) => reportError(e, "게임 목록을 불러오지 못했어요."));
-        getAllReviews()
-            .then(setReviews)
-            .catch((e) => reportError(e, "리뷰 목록을 불러오지 못했어요."));
+        // 두 요청을 개별 catch로 처리하면 둘 다 실패했을 때 alert가 연달아 두 번 뜬다.
+        // allSettled로 묶어서 실패한 것만 모아 한 번에 알린다.
+        Promise.allSettled([getGames(), getAllReviews()]).then(
+            ([gamesResult, reviewsResult]) => {
+                const failed: string[] = [];
+                if (gamesResult.status === "fulfilled") {
+                    setGames(gamesResult.value);
+                } else {
+                    console.error(gamesResult.reason);
+                    failed.push("게임 목록");
+                }
+                if (reviewsResult.status === "fulfilled") {
+                    setReviews(reviewsResult.value);
+                } else {
+                    console.error(reviewsResult.reason);
+                    failed.push("리뷰 목록");
+                }
+                if (failed.length > 0) {
+                    alert(`${failed.join(", ")}을 불러오지 못했어요.`);
+                }
+            }
+        );
     }, []);
 
+    // 실패하면 원래 값을 그대로 유지한다(낙관적 업데이트가 아님).
+    // 낙관적 업데이트로 바꾸게 되면 이 catch 블록에서 이전 상태로 되돌리는 롤백 로직이 필요하다.
     async function handleToggleLike(id: number) {
         const game = games.find((g) => g.id === id);
         if (!game) return;
