@@ -6,10 +6,11 @@ const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 // 실패한 응답의 본문을 읽어 에러 메시지를 만든다.
 // statusText는 HTTP/2 등 일부 환경에서 빈 문자열일 수 있어, 본문(res.text())을 우선 사용하고 없으면 statusText로 대체한다.
 // res.text() 자체가 실패(네트워크 오류 등)해도 상태 코드는 남길 수 있도록 빈 문자열로 폴백한다.
-// export된 이유: 단위 테스트에서 에러 포맷을 직접 검증할 수 있도록 하기 위함.
+// body와 statusText가 둘 다 비어있는 경우(HTTP/2 등)를 대비해 마지막으로 리터럴 문자열로 폴백한다.
+/** @internal 단위 테스트에서 에러 포맷을 직접 검증하기 위해서만 export됨. 일반 코드는 parseResponse/assertOk를 통해 간접적으로 사용할 것. */
 export async function createApiError(res: Response): Promise<Error> {
     const body = await res.text().catch(() => "");
-    return new Error(`API 요청 실패: ${res.status} ${body || res.statusText}`);
+    return new Error(`API 요청 실패: ${res.status} ${body || res.statusText || "(메시지 없음)"}`);
 }
 
 // 응답이 실패(res.ok === false)면 에러를 던지고, 성공하면 JSON을 파싱해서 반환한다.
@@ -24,8 +25,8 @@ export async function parseResponse<T>(res: Response): Promise<T> {
     }
     try {
         return (await res.json()) as T;
-    } catch {
-        throw new Error(`JSON 파싱 실패: ${res.status}`);
+    } catch (e) {
+        throw new Error(`JSON 파싱 실패: ${res.status} - ${e}`, { cause: e });
     }
 }
 
