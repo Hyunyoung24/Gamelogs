@@ -26,7 +26,8 @@ export async function parseResponse<T>(res: Response): Promise<T> {
     try {
         return (await res.json()) as T;
     } catch (e) {
-        throw new Error(`JSON 파싱 실패: ${res.status} - ${e}`, { cause: e });
+        const message = e instanceof Error ? e.message : String(e);
+        throw new Error(`JSON 파싱 실패: ${res.status} - ${message}`, { cause: e });
     }
 }
 
