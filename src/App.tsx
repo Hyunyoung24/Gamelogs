@@ -6,6 +6,13 @@ import { Routes, Route, useNavigate, NavLink, Link } from 'react-router-dom';
 import BestRanking from './BestRanking';
 import { getGames, createGame, updateGame, deleteGame, getAllReviews } from './api';
 
+// API 호출 실패를 콘솔에 남기고 사용자에게 알린다.
+// TODO: alert()는 브라우저 UI를 막는 방식이라 UX상 아쉬움. 프로젝트가 커지면 토스트 컴포넌트로 교체할 것.
+function reportError(e: unknown, message: string) {
+    console.error(e);
+    alert(message);
+}
+
 function App() {
     const [games, setGames] = useState<Game[]>([]);
     const [reviews, setReviews] = useState<Review[]>([]);
@@ -14,16 +21,10 @@ function App() {
     useEffect(() => {
         getGames()
             .then(setGames)
-            .catch((e) => {
-                console.error(e);
-                alert("게임 목록을 불러오지 못했어요.");
-            });
+            .catch((e) => reportError(e, "게임 목록을 불러오지 못했어요."));
         getAllReviews()
             .then(setReviews)
-            .catch((e) => {
-                console.error(e);
-                alert("리뷰 목록을 불러오지 못했어요.");
-            });
+            .catch((e) => reportError(e, "리뷰 목록을 불러오지 못했어요."));
     }, []);
 
     async function handleToggleLike(id: number) {
@@ -33,14 +34,13 @@ function App() {
             const updated = await updateGame(id, { liked: !game.liked });
             setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
         } catch (e) {
-            console.error(e);
-            alert("좋아요 상태를 저장하지 못했어요.");
+            reportError(e, "좋아요 상태를 저장하지 못했어요.");
         }
     }
 
     async function handleSave(id: number | null, data: Omit<Game, "id" | "liked">) {
         try {
-            if (id) {
+            if (id !== null) {
                 const updated = await updateGame(id, data);
                 setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
             } else {
@@ -49,8 +49,7 @@ function App() {
             }
             navigate("/");
         } catch (e) {
-            console.error(e);
-            alert("저장하지 못했어요. 다시 시도해주세요.");
+            reportError(e, "저장하지 못했어요. 다시 시도해주세요.");
         }
     }
 
@@ -60,8 +59,7 @@ function App() {
             setGames((prev) => prev.filter((g) => g.id !== id));
             navigate("/");
         } catch (e) {
-            console.error(e);
-            alert("삭제하지 못했어요. 다시 시도해주세요.");
+            reportError(e, "삭제하지 못했어요. 다시 시도해주세요.");
         }
     }
 
