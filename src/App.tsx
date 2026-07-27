@@ -12,32 +12,57 @@ function App() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getGames().then(setGames);
-        getAllReviews().then(setReviews);
+        getGames()
+            .then(setGames)
+            .catch((e) => {
+                console.error(e);
+                alert("게임 목록을 불러오지 못했어요.");
+            });
+        getAllReviews()
+            .then(setReviews)
+            .catch((e) => {
+                console.error(e);
+                alert("리뷰 목록을 불러오지 못했어요.");
+            });
     }, []);
 
     async function handleToggleLike(id: number) {
         const game = games.find((g) => g.id === id);
         if (!game) return;
-        const updated = await updateGame(id, { liked: !game.liked });
-        setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
+        try {
+            const updated = await updateGame(id, { liked: !game.liked });
+            setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
+        } catch (e) {
+            console.error(e);
+            alert("좋아요 상태를 저장하지 못했어요.");
+        }
     }
 
     async function handleSave(id: number | null, data: Omit<Game, "id" | "liked">) {
-        if (id) {
-            const updated = await updateGame(id, data);
-            setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
-        } else {
-            const newGame = await createGame(data);
-            setGames((prev) => [...prev, newGame]);
+        try {
+            if (id) {
+                const updated = await updateGame(id, data);
+                setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
+            } else {
+                const newGame = await createGame(data);
+                setGames((prev) => [...prev, newGame]);
+            }
+            navigate("/");
+        } catch (e) {
+            console.error(e);
+            alert("저장하지 못했어요. 다시 시도해주세요.");
         }
-        navigate("/");
     }
 
     async function handleDelete(id: number) {
-        await deleteGame(id);
-        setGames((prev) => prev.filter((g) => g.id !== id));
-        navigate("/");
+        try {
+            await deleteGame(id);
+            setGames((prev) => prev.filter((g) => g.id !== id));
+            navigate("/");
+        } catch (e) {
+            console.error(e);
+            alert("삭제하지 못했어요. 다시 시도해주세요.");
+        }
     }
 
     return (
