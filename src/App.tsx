@@ -6,38 +6,79 @@ import { Routes, Route, useNavigate, NavLink, Link } from 'react-router-dom';
 import BestRanking from './BestRanking';
 import { getGames, createGame, updateGame, deleteGame, getAllReviews } from './api';
 
+// API 호출 실패를 콘솔에 남기고 사용자에게 알린다.
+// TODO: alert()는 브라우저 UI를 막는 방식이라 UX상 아쉬움. 프로젝트가 커지면 토스트 컴포넌트로 교체할 것.
+function reportError(e: unknown, message: string) {
+    console.error(e);
+    alert(message);
+}
+
 function App() {
     const [games, setGames] = useState<Game[]>([]);
     const [reviews, setReviews] = useState<Review[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        getGames().then(setGames);
-        getAllReviews().then(setReviews);
+        // 두 요청을 개별 catch로 처리하면 둘 다 실패했을 때 alert가 연달아 두 번 뜬다.
+        // allSettled로 묶어서 실패한 것만 모아 한 번에 알린다.
+        Promise.allSettled([getGames(), getAllReviews()]).then(
+            ([gamesResult, reviewsResult]) => {
+                const failed: string[] = [];
+                if (gamesResult.status === "fulfilled") {
+                    setGames(gamesResult.value);
+                } else {
+                    console.error(gamesResult.reason);
+                    failed.push("게임 목록");
+                }
+                if (reviewsResult.status === "fulfilled") {
+                    setReviews(reviewsResult.value);
+                } else {
+                    console.error(reviewsResult.reason);
+                    failed.push("리뷰 목록");
+                }
+                if (failed.length > 0) {
+                    alert(`${failed.join(", ")}을 불러오지 못했어요.`);
+                }
+            }
+        );
     }, []);
 
+    // 실패하면 원래 값을 그대로 유지한다(낙관적 업데이트가 아님).
+    // 낙관적 업데이트로 바꾸게 되면 이 catch 블록에서 이전 상태로 되돌리는 롤백 로직이 필요하다.
     async function handleToggleLike(id: number) {
         const game = games.find((g) => g.id === id);
         if (!game) return;
-        const updated = await updateGame(id, { liked: !game.liked });
-        setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
+        try {
+            const updated = await updateGame(id, { liked: !game.liked });
+            setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
+        } catch (e) {
+            reportError(e, "좋아요 상태를 저장하지 못했어요.");
+        }
     }
 
     async function handleSave(id: number | null, data: Omit<Game, "id" | "liked">) {
-        if (id) {
-            const updated = await updateGame(id, data);
-            setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
-        } else {
-            const newGame = await createGame(data);
-            setGames((prev) => [...prev, newGame]);
+        try {
+            if (id !== null) {
+                const updated = await updateGame(id, data);
+                setGames((prev) => prev.map((g) => (g.id === id ? updated : g)));
+            } else {
+                const newGame = await createGame(data);
+                setGames((prev) => [...prev, newGame]);
+            }
+            navigate("/");
+        } catch (e) {
+            reportError(e, "저장하지 못했어요. 다시 시도해주세요.");
         }
-        navigate("/");
     }
 
     async function handleDelete(id: number) {
-        await deleteGame(id);
-        setGames((prev) => prev.filter((g) => g.id !== id));
-        navigate("/");
+        try {
+            await deleteGame(id);
+            setGames((prev) => prev.filter((g) => g.id !== id));
+            navigate("/");
+        } catch (e) {
+            reportError(e, "삭제하지 못했어요. 다시 시도해주세요.");
+        }
     }
 
     return (
