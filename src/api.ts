@@ -41,7 +41,7 @@ export async function assertOk(res: Response): Promise<void> {
 // 게임 목록 조회 (GET /games)
 export async function getGames(): Promise<Game[]> {
     const res = await fetch(`${BASE_URL}/games`);
-    return res.json();
+    return parseResponse<Game[]>(res);
 }
 
 // 게임 등록 (POST /games)
@@ -53,7 +53,7 @@ export async function createGame(
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, liked: false }),
     });
-    return res.json();
+    return parseResponse<Game>(res);
 }
 
 // 게임 수정 (PATCH /games/:id)
@@ -66,14 +66,15 @@ export async function updateGame(
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
     });
-    return res.json();
+    return parseResponse<Game>(res);
 }
 
 // 게임 삭제 (DELETE /games/:id)
 export async function deleteGame(id: number): Promise<void> {
-    await fetch(`${BASE_URL}/games/${id}`, {
+    const res = await fetch(`${BASE_URL}/games/${id}`, {
         method: "DELETE",
     });
+    await assertOk(res);
 }
 
 // 특정 게임의 리뷰 목록 조회 (GET /reviews?gameId=...)
