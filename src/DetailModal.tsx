@@ -21,10 +21,22 @@ function DetailModal({ game, onClose }: DetailModalProps) {
         // 새 게임의 리뷰가 도착하기 전까지 이전 게임의 리뷰가 잠깐 남아있는 걸 방지
         setReviews([]);
         setReviewsLoading(true);
+        // 게임을 빠르게 연속 전환하면 이전 요청 응답이 늦게 도착해 최신 상태를 덮어쓸 수 있다.
+        // cancelled 플래그로 이 effect가 이미 무효화됐으면(=클린업 실행됨) 응답을 무시한다.
+        let cancelled = false;
         getReviews(game.id)
-            .then(setReviews)
-            .catch((e) => reportError(e, "리뷰를 불러오지 못했어요."))
-            .finally(() => setReviewsLoading(false));
+            .then((data) => {
+                if (!cancelled) setReviews(data);
+            })
+            .catch((e) => {
+                if (!cancelled) reportError(e, "리뷰를 불러오지 못했어요.");
+            })
+            .finally(() => {
+                if (!cancelled) setReviewsLoading(false);
+            });
+        return () => {
+            cancelled = true;
+        };
     }, [game?.id]);
 
     if (!game) return null;
