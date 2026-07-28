@@ -175,6 +175,9 @@ select{
   color:var(--text-secondary);
   cursor:pointer;
   user-select:none;
+  border:none;
+  background:none;
+  padding:0;
 }
 .toggle{
   width:34px;

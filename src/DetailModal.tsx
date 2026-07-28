@@ -20,8 +20,10 @@ function DetailModal({ game, onClose }: DetailModalProps) {
 
     // 열려있는 게임(game.id)이 바뀔 때마다 그 게임의 리뷰를 새로 불러옴
     useEffect(() => {
-        if (!game) return;
-        if (loadedGameIdRef.current === game.id) return;
+        // early return 분기에도 명시적으로 빈 클린업을 반환해서, 이후 코드가 바뀌어도
+        // "이 effect는 클린업이 있다/없다"가 한눈에 드러나게 한다.
+        if (!game) return () => {};
+        if (loadedGameIdRef.current === game.id) return () => {};
         // 새 게임의 리뷰가 도착하기 전까지 이전 게임의 리뷰가 잠깐 남아있는 걸 방지
         setReviews([]);
         setReviewsLoading(true);
