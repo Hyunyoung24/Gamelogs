@@ -56,7 +56,7 @@ function BestRanking({ games, reviews, loading }: BestRankingProps) {
             </div>
             {loading && (
                 <p className="loading-notice">
-                    무료 서버를 사용 중이라 첫 로딩이 다소 걸릴 수 있어요. 잠시만 기다려주세요.
+                    Render로 배포하여 첫 로딩이 다소 걸릴 수 있으니, 잠시만 기다려주세요.
                 </p>
             )}
             <div>
