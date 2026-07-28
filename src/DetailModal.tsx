@@ -17,6 +17,8 @@ function DetailModal({ game, onClose }: DetailModalProps) {
     // 열려있는 게임(game.id)이 바뀔 때마다 그 게임의 리뷰를 새로 불러옴
     useEffect(() => {
         if (!game) return;
+        // 새 게임의 리뷰가 도착하기 전까지 이전 게임의 리뷰가 잠깐 남아있는 걸 방지
+        setReviews([]);
         getReviews(game.id)
             .then(setReviews)
             .catch((e) => reportError(e, "리뷰를 불러오지 못했어요."));

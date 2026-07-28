@@ -14,6 +14,9 @@ interface GameListProps {
 
 type SortOption = "rating-desc" | "rating-asc" | "reviews-desc" | "reviews-asc" | "name-asc" | "name-desc";
 
+// 로딩 중 보여줄 스켈레톤 카드 개수. 화면 크기에 따라 정확히 맞출 필요는 없어서 고정값으로 둔다.
+const SKELETON_CARD_COUNT = 8;
+
 function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
     const [activeGenres, setActiveGenres] = useState<string[]>([]);
     const [filterMode, setFilterMode] = useState<"or" | "and">("or");
@@ -65,11 +68,11 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
         <>
             <h1 className="page-title">게임 목록</h1>
             <p className="page-sub">플레이한 게임을 평가하고 찜해보세요.</p>
-            <div className="filter-bar">
+            <div className={`filter-bar ${loading ? "disabled" : ""}`}>
                 <div className="chips">
                     <span
                         className={`chip ${activeGenres.length === 0 ? "active" : ""}`}
-                        onClick={() => setActiveGenres([])}
+                        onClick={() => !loading && setActiveGenres([])}
                     >
                         전체
                     </span>
@@ -77,7 +80,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                         <span
                             key={g}
                             className={`chip ${activeGenres.includes(g) ? "active" : ""}`}
-                            onClick={() => handleGenreToggle(g)}
+                            onClick={() => !loading && handleGenreToggle(g)}
                         >
                             {g}
                         </span>
@@ -87,6 +90,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                     {activeGenres.length > 1 && (
                         <button
                             className="btn"
+                            disabled={loading}
                             onClick={() => setFilterMode((prev) => (prev === "or" ? "and" : "or"))}
                         >
                             {filterMode === "or" ? "하나라도 포함" : "모두 포함"}
@@ -94,6 +98,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                     )}
                     <select
                         value={sortOption}
+                        disabled={loading}
                         onChange={(e) => setSortOption(e.target.value as SortOption)}
                     >
                         <option value="rating-desc">평점 (높은 순)</option>
@@ -103,7 +108,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                         <option value="name-asc">이름 (가나다순)</option>
                         <option value="name-desc">이름 (역순)</option>
                     </select>
-                    <div className="toggle-wrap" onClick={() => setLikedOnly((prev) => !prev)}>
+                    <div className="toggle-wrap" onClick={() => !loading && setLikedOnly((prev) => !prev)}>
                         <span className={`toggle ${likedOnly ? "on" : ""}`}>
                             <span className="knob"></span>
                         </span>
@@ -114,7 +119,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
 
             <div className="grid">
                 {loading
-                    ? Array.from({ length: 8 }).map((_, i) => (
+                    ? Array.from({ length: SKELETON_CARD_COUNT }).map((_, i) => (
                           <div className="card skeleton-card" key={i}>
                               <div className="cover skeleton-block skeleton-animated" />
                               <div className="card-body">
