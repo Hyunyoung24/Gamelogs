@@ -4,6 +4,7 @@ import { genres as gameGenres } from "./types";
 import { averageRating } from "./rating";
 import GameCard from "./GameCard";
 import DetailModal from "./DetailModal";
+import LoadingNotice from "./LoadingNotice";
 
 interface GameListProps {
     games: Game[];
@@ -125,6 +126,8 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                     </button>
                 </div>
             </div>
+
+            {loading && <LoadingNotice />}
 
             <div className="grid">
                 {loading
