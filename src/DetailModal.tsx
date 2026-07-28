@@ -128,7 +128,11 @@ function DetailModal({ game, onClose }: DetailModalProps) {
                             value={newContent}
                             onChange={(e) => setNewContent(e.target.value)}
                         />
-                        <button className="btn btn-primary" onClick={handleAddReview}>
+                        <button
+                            className="btn btn-primary"
+                            disabled={reviewsLoading}
+                            onClick={handleAddReview}
+                        >
                             등록
                         </button>
                     </div>

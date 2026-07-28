@@ -32,7 +32,8 @@ function App() {
                     failed.push("리뷰 목록");
                 }
                 if (failed.length > 0) {
-                    alert(`${failed.join(", ")}을 불러오지 못했어요.`);
+                    // 개별 원인은 위에서 이미 console.error로 남겼으니, 여기선 null을 넘기고 메시지만 통합해서 알린다.
+                    reportError(null, `${failed.join(", ")}을 불러오지 못했어요.`);
                 }
             })
             // allSettled는 항상 resolve되니 지금은 .then만으로도 충분하지만,
