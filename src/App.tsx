@@ -6,6 +6,7 @@ import { Routes, Route, useNavigate, NavLink, Link } from 'react-router-dom';
 import BestRanking from './BestRanking';
 import { getGames, createGame, updateGame, deleteGame, getAllReviews } from './api';
 import { reportError } from './errors';
+import Toast from './Toast';
 
 function App() {
     const [games, setGames] = useState<Game[]>([]);
@@ -99,6 +100,7 @@ function App() {
                   <Route path="/edit/:id" element={<GameForm games={games} onSave={handleSave} onDelete={handleDelete} />} />
               </Routes>
           </main>
+          <Toast />
       </>
   );
 }

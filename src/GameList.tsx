@@ -68,22 +68,26 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
         <>
             <h1 className="page-title">게임 목록</h1>
             <p className="page-sub">플레이한 게임을 평가하고 찜해보세요.</p>
-            <div className={`filter-bar${loading ? " disabled" : ""}`}>
+            <div className="filter-bar">
                 <div className="chips">
-                    <span
+                    <button
+                        type="button"
                         className={`chip ${activeGenres.length === 0 ? "active" : ""}`}
+                        disabled={loading}
                         onClick={() => setActiveGenres([])}
                     >
                         전체
-                    </span>
+                    </button>
                     {gameGenres.map((g) => (
-                        <span
+                        <button
+                            type="button"
                             key={g}
                             className={`chip ${activeGenres.includes(g) ? "active" : ""}`}
+                            disabled={loading}
                             onClick={() => handleGenreToggle(g)}
                         >
                             {g}
-                        </span>
+                        </button>
                     ))}
                 </div>
                 <div className="controls-right">
@@ -108,12 +112,17 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                         <option value="name-asc">이름 (가나다순)</option>
                         <option value="name-desc">이름 (역순)</option>
                     </select>
-                    <div className="toggle-wrap" onClick={() => setLikedOnly((prev) => !prev)}>
+                    <button
+                        type="button"
+                        className="toggle-wrap"
+                        disabled={loading}
+                        onClick={() => setLikedOnly((prev) => !prev)}
+                    >
                         <span className={`toggle ${likedOnly ? "on" : ""}`}>
                             <span className="knob"></span>
                         </span>
                         찜한 항목만
-                    </div>
+                    </button>
                 </div>
             </div>
 

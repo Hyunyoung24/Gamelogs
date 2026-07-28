@@ -116,11 +116,6 @@ p.page-sub{
   gap:12px;
   margin-bottom:18px;
 }
-/* 로딩 중에는 필터/정렬을 조작해도 결과가 없어 혼란스러우니 비활성화 상태로 보여준다 */
-.filter-bar.disabled{
-  opacity:0.5;
-  pointer-events:none;
-}
 .chips{
   display:flex;
   flex-wrap:wrap;
@@ -146,6 +141,17 @@ p.page-sub{
   border-color:var(--accent-strong);
   color:#04202f;
   font-weight:600;
+}
+/* .chip과 .toggle-wrap이 이제 <button>이라, 브라우저 기본 버튼 스타일을 지우고 disabled 상태를 표시한다 */
+button.chip,
+button.toggle-wrap{
+  font:inherit;
+  appearance:none;
+}
+button.chip:disabled,
+button.toggle-wrap:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
 }
 
 .controls-right{
@@ -655,4 +661,25 @@ select{
     flex-direction:column;
     gap:0;
   }
+}
+
+/* 토스트 알림 */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%);
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  color:var(--text-white);
+  padding:12px 20px;
+  border-radius:var(--radius);
+  box-shadow:0 8px 24px rgba(0,0,0,0.45);
+  font-size:13px;
+  z-index:200;
+  animation:toast-in .2s ease-out;
+}
+@keyframes toast-in{
+  from{opacity:0; transform:translate(-50%, 8px);}
+  to{opacity:1; transform:translate(-50%, 0);}
 }
