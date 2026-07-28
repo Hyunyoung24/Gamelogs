@@ -72,7 +72,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                 <div className="chips">
                     <span
                         className={`chip ${activeGenres.length === 0 ? "active" : ""}`}
-                        onClick={() => !loading && setActiveGenres([])}
+                        onClick={() => setActiveGenres([])}
                     >
                         전체
                     </span>
@@ -80,7 +80,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                         <span
                             key={g}
                             className={`chip ${activeGenres.includes(g) ? "active" : ""}`}
-                            onClick={() => !loading && handleGenreToggle(g)}
+                            onClick={() => handleGenreToggle(g)}
                         >
                             {g}
                         </span>
@@ -108,7 +108,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                         <option value="name-asc">이름 (가나다순)</option>
                         <option value="name-desc">이름 (역순)</option>
                     </select>
-                    <div className="toggle-wrap" onClick={() => !loading && setLikedOnly((prev) => !prev)}>
+                    <div className="toggle-wrap" onClick={() => setLikedOnly((prev) => !prev)}>
                         <span className={`toggle ${likedOnly ? "on" : ""}`}>
                             <span className="knob"></span>
                         </span>

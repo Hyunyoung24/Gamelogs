@@ -114,6 +114,7 @@ function DetailModal({ game, onClose }: DetailModalProps) {
                     <div className="review-form">
                         <select
                             value={newRating}
+                            disabled={reviewsLoading}
                             onChange={(e) => setNewRating(Number(e.target.value))}
                         >
                             <option value={5}>★5</option>
@@ -126,6 +127,7 @@ function DetailModal({ game, onClose }: DetailModalProps) {
                             type="text"
                             placeholder="리뷰를 남겨보세요"
                             value={newContent}
+                            disabled={reviewsLoading}
                             onChange={(e) => setNewContent(e.target.value)}
                         />
                         <button
