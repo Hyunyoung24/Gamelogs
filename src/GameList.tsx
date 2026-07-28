@@ -8,12 +8,13 @@ import DetailModal from "./DetailModal";
 interface GameListProps {
     games: Game[];
     reviews: Review[];
+    loading: boolean;
     onToggleLike: (id: number) => void;
 }
 
 type SortOption = "rating-desc" | "rating-asc" | "reviews-desc" | "reviews-asc" | "name-asc" | "name-desc";
 
-function GameList({ games, reviews, onToggleLike }: GameListProps) {
+function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
     const [activeGenres, setActiveGenres] = useState<string[]>([]);
     const [filterMode, setFilterMode] = useState<"or" | "and">("or");
     const [sortOption, setSortOption] = useState<SortOption>("rating-desc");
@@ -112,15 +113,25 @@ function GameList({ games, reviews, onToggleLike }: GameListProps) {
             </div>
 
             <div className="grid">
-                {visibleGames.map((game) => (
-                    <GameCard
-                        key={game.id}
-                        game={game}
-                        rating={averageRating(game.id, reviews)}
-                        onSelect={handleSelect}
-                        onToggleLike={onToggleLike}
-                    />
-                ))}
+                {loading
+                    ? Array.from({ length: 8 }).map((_, i) => (
+                          <div className="card skeleton-card" key={i}>
+                              <div className="cover skeleton-block" />
+                              <div className="card-body">
+                                  <div className="skeleton-line skeleton-line-title" />
+                                  <div className="skeleton-line skeleton-line-meta" />
+                              </div>
+                          </div>
+                      ))
+                    : visibleGames.map((game) => (
+                          <GameCard
+                              key={game.id}
+                              game={game}
+                              rating={averageRating(game.id, reviews)}
+                              onSelect={handleSelect}
+                              onToggleLike={onToggleLike}
+                          />
+                      ))}
             </div>
             <DetailModal game={selectedGame} onClose={() => setSelectedId(null)} />
         </>

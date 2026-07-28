@@ -6,11 +6,12 @@ import DetailModal from "./DetailModal";
 interface BestRankingProps {
     games: Game[];
     reviews: Review[];
+    loading: boolean;
 }
 
 type SortKey = "rating" | "liked" | "reviews";
 
-function BestRanking({ games, reviews }: BestRankingProps) {
+function BestRanking({ games, reviews, loading }: BestRankingProps) {
     const [sortKey, setSortKey] = useState<SortKey>("rating");
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
@@ -51,7 +52,17 @@ function BestRanking({ games, reviews }: BestRankingProps) {
                 </span>
             </div>
             <div>
-                {sortedGames.map((game, index) => {
+                {loading &&
+                    Array.from({ length: 6 }).map((_, i) => (
+                        <div className="rank-row skeleton-card" key={i}>
+                            <span className="rank-num">&nbsp;</span>
+                            <div className="rank-info">
+                                <div className="skeleton-line skeleton-line-title" />
+                                <div className="skeleton-line skeleton-line-meta" />
+                            </div>
+                        </div>
+                    ))}
+                {!loading && sortedGames.map((game, index) => {
                     const rating = averageRating(game.id, reviews);
                     return (
                         <div className="rank-row" key={game.id} onClick={() => setSelectedId(game.id)}>
