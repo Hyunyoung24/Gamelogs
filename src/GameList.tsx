@@ -4,6 +4,7 @@ import { genres as gameGenres } from "./types";
 import { averageRating } from "./rating";
 import GameCard from "./GameCard";
 import DetailModal from "./DetailModal";
+import LoadingNotice from "./LoadingNotice";
 
 interface GameListProps {
     games: Game[];
@@ -126,11 +127,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                 </div>
             </div>
 
-            {loading && (
-                <p className="loading-notice">
-                    Render로 배포하여 첫 로딩이 다소 걸릴 수 있으니, 잠시만 기다려주세요.
-                </p>
-            )}
+            {loading && <LoadingNotice />}
 
             <div className="grid">
                 {loading

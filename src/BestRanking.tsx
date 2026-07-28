@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Game, Review } from "./types";
 import { averageRating } from "./rating";
 import DetailModal from "./DetailModal";
+import LoadingNotice from "./LoadingNotice";
 
 interface BestRankingProps {
     games: Game[];
@@ -54,11 +55,7 @@ function BestRanking({ games, reviews, loading }: BestRankingProps) {
                     찜 많은 순
                 </span>
             </div>
-            {loading && (
-                <p className="loading-notice">
-                    Render로 배포하여 첫 로딩이 다소 걸릴 수 있으니, 잠시만 기다려주세요.
-                </p>
-            )}
+            {loading && <LoadingNotice />}
             <div>
                 {loading
                     ? Array.from({ length: SKELETON_ROW_COUNT }).map((_, i) => (
