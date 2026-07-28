@@ -406,6 +406,11 @@ select{
   font-size:13px;
 }
 .review:last-of-type{border-bottom:none;}
+.review-loading{
+  font-size:13px;
+  color:var(--text-muted);
+  padding:10px 0;
+}
 .review-author{
   color:var(--text-white);
   font-weight:600;

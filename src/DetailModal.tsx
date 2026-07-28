@@ -11,6 +11,7 @@ interface DetailModalProps {
 
 function DetailModal({ game, onClose }: DetailModalProps) {
     const [reviews, setReviews] = useState<Review[]>([]);
+    const [reviewsLoading, setReviewsLoading] = useState(false);
     const [newRating, setNewRating] = useState(5);
     const [newContent, setNewContent] = useState("");
 
@@ -19,9 +20,11 @@ function DetailModal({ game, onClose }: DetailModalProps) {
         if (!game) return;
         // 새 게임의 리뷰가 도착하기 전까지 이전 게임의 리뷰가 잠깐 남아있는 걸 방지
         setReviews([]);
+        setReviewsLoading(true);
         getReviews(game.id)
             .then(setReviews)
-            .catch((e) => reportError(e, "리뷰를 불러오지 못했어요."));
+            .catch((e) => reportError(e, "리뷰를 불러오지 못했어요."))
+            .finally(() => setReviewsLoading(false));
     }, [game?.id]);
 
     if (!game) return null;
@@ -80,26 +83,32 @@ function DetailModal({ game, onClose }: DetailModalProps) {
                     <p className="modal-desc">{game.description}</p>
 
                     <hr className="divider" />
-                    <p className="section-label">리뷰 {reviews.length}개</p>
+                    <p className="section-label">
+                        {reviewsLoading ? "리뷰 불러오는 중..." : `리뷰 ${reviews.length}개`}
+                    </p>
 
                     <div id="review-list">
-                        {reviews.map((review) => (
-                            <div className="review" key={review.id}>
-                                <div>
-                                    <span className="review-author">{review.author}</span>
-                                    <span className="review-stars">
-                                        {"★".repeat(review.rating)}
-                                    </span>
-                                    <div className="review-text">{review.content}</div>
+                        {reviewsLoading ? (
+                            <p className="review-loading">잠시만 기다려주세요...</p>
+                        ) : (
+                            reviews.map((review) => (
+                                <div className="review" key={review.id}>
+                                    <div>
+                                        <span className="review-author">{review.author}</span>
+                                        <span className="review-stars">
+                                            {"★".repeat(review.rating)}
+                                        </span>
+                                        <div className="review-text">{review.content}</div>
+                                    </div>
+                                    <button
+                                        className="review-del"
+                                        onClick={() => handleDeleteReview(review.id)}
+                                    >
+                                        삭제
+                                    </button>
                                 </div>
-                                <button
-                                    className="review-del"
-                                    onClick={() => handleDeleteReview(review.id)}
-                                >
-                                    삭제
-                                </button>
-                            </div>
-                        ))}
+                            ))
+                        )}
                     </div>
 
                     <div className="review-form">

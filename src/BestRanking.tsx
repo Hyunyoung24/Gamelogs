@@ -11,6 +11,9 @@ interface BestRankingProps {
 
 type SortKey = "rating" | "liked" | "reviews";
 
+// 로딩 중 보여줄 스켈레톤 행 개수
+const SKELETON_ROW_COUNT = 6;
+
 function BestRanking({ games, reviews, loading }: BestRankingProps) {
     const [sortKey, setSortKey] = useState<SortKey>("rating");
     const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -53,7 +56,7 @@ function BestRanking({ games, reviews, loading }: BestRankingProps) {
             </div>
             <div>
                 {loading
-                    ? Array.from({ length: 6 }).map((_, i) => (
+                    ? Array.from({ length: SKELETON_ROW_COUNT }).map((_, i) => (
                           <div className="rank-row skeleton-card" key={i}>
                               <span className="rank-num">&nbsp;</span>
                               <div className="rank-info">
