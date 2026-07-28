@@ -57,7 +57,7 @@ function BestRanking({ games, reviews, loading }: BestRankingProps) {
             <div>
                 {loading
                     ? Array.from({ length: SKELETON_ROW_COUNT }).map((_, i) => (
-                          <div className="rank-row skeleton-card" key={i}>
+                          <div className="rank-row skeleton-card" key={`skeleton-${i}`}>
                               <span className="rank-num">&nbsp;</span>
                               <div className="rank-info">
                                   <div className="skeleton-line skeleton-line-title skeleton-animated" />
