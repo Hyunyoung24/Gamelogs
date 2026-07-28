@@ -8,12 +8,16 @@ import DetailModal from "./DetailModal";
 interface GameListProps {
     games: Game[];
     reviews: Review[];
+    loading: boolean;
     onToggleLike: (id: number) => void;
 }
 
 type SortOption = "rating-desc" | "rating-asc" | "reviews-desc" | "reviews-asc" | "name-asc" | "name-desc";
 
-function GameList({ games, reviews, onToggleLike }: GameListProps) {
+// 로딩 중 보여줄 스켈레톤 카드 개수. 화면 크기에 따라 정확히 맞출 필요는 없어서 고정값으로 둔다.
+const SKELETON_CARD_COUNT = 8;
+
+function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
     const [activeGenres, setActiveGenres] = useState<string[]>([]);
     const [filterMode, setFilterMode] = useState<"or" | "and">("or");
     const [sortOption, setSortOption] = useState<SortOption>("rating-desc");
@@ -66,26 +70,31 @@ function GameList({ games, reviews, onToggleLike }: GameListProps) {
             <p className="page-sub">플레이한 게임을 평가하고 찜해보세요.</p>
             <div className="filter-bar">
                 <div className="chips">
-                    <span
+                    <button
+                        type="button"
                         className={`chip ${activeGenres.length === 0 ? "active" : ""}`}
+                        disabled={loading}
                         onClick={() => setActiveGenres([])}
                     >
                         전체
-                    </span>
+                    </button>
                     {gameGenres.map((g) => (
-                        <span
+                        <button
+                            type="button"
                             key={g}
                             className={`chip ${activeGenres.includes(g) ? "active" : ""}`}
+                            disabled={loading}
                             onClick={() => handleGenreToggle(g)}
                         >
                             {g}
-                        </span>
+                        </button>
                     ))}
                 </div>
                 <div className="controls-right">
                     {activeGenres.length > 1 && (
                         <button
                             className="btn"
+                            disabled={loading}
                             onClick={() => setFilterMode((prev) => (prev === "or" ? "and" : "or"))}
                         >
                             {filterMode === "or" ? "하나라도 포함" : "모두 포함"}
@@ -93,6 +102,7 @@ function GameList({ games, reviews, onToggleLike }: GameListProps) {
                     )}
                     <select
                         value={sortOption}
+                        disabled={loading}
                         onChange={(e) => setSortOption(e.target.value as SortOption)}
                     >
                         <option value="rating-desc">평점 (높은 순)</option>
@@ -102,25 +112,40 @@ function GameList({ games, reviews, onToggleLike }: GameListProps) {
                         <option value="name-asc">이름 (가나다순)</option>
                         <option value="name-desc">이름 (역순)</option>
                     </select>
-                    <div className="toggle-wrap" onClick={() => setLikedOnly((prev) => !prev)}>
+                    <button
+                        type="button"
+                        className="toggle-wrap"
+                        disabled={loading}
+                        onClick={() => setLikedOnly((prev) => !prev)}
+                    >
                         <span className={`toggle ${likedOnly ? "on" : ""}`}>
                             <span className="knob"></span>
                         </span>
                         찜한 항목만
-                    </div>
+                    </button>
                 </div>
             </div>
 
             <div className="grid">
-                {visibleGames.map((game) => (
-                    <GameCard
-                        key={game.id}
-                        game={game}
-                        rating={averageRating(game.id, reviews)}
-                        onSelect={handleSelect}
-                        onToggleLike={onToggleLike}
-                    />
-                ))}
+                {loading
+                    ? Array.from({ length: SKELETON_CARD_COUNT }).map((_, i) => (
+                          <div className="card skeleton-card" key={`skeleton-${i}`}>
+                              <div className="cover skeleton-block skeleton-animated" />
+                              <div className="card-body">
+                                  <div className="skeleton-line skeleton-line-title skeleton-animated" />
+                                  <div className="skeleton-line skeleton-line-meta skeleton-animated" />
+                              </div>
+                          </div>
+                      ))
+                    : visibleGames.map((game) => (
+                          <GameCard
+                              key={game.id}
+                              game={game}
+                              rating={averageRating(game.id, reviews)}
+                              onSelect={handleSelect}
+                              onToggleLike={onToggleLike}
+                          />
+                      ))}
             </div>
             <DetailModal game={selectedGame} onClose={() => setSelectedId(null)} />
         </>

@@ -80,7 +80,7 @@ export async function deleteGame(id: number): Promise<void> {
 // 특정 게임의 리뷰 목록 조회 (GET /reviews?gameId=...)
 export async function getReviews(gameId: number): Promise<Review[]> {
     const res = await fetch(`${BASE_URL}/reviews?gameId=${gameId}`);
-    return res.json();
+    return parseResponse<Review[]>(res);
 }
 
 // 리뷰 작성 (POST /reviews)
@@ -92,18 +92,19 @@ export async function createReview(
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
     });
-    return res.json();
+    return parseResponse<Review>(res);
 }
 
 // 리뷰 삭제 (DELETE /reviews/:id)
 export async function deleteReview(id: number): Promise<void> {
-    await fetch(`${BASE_URL}/reviews/${id}`, {
+    const res = await fetch(`${BASE_URL}/reviews/${id}`, {
         method: "DELETE",
     });
+    await assertOk(res);
 }
 
 // 전체 리뷰 조회 (GET /reviews) — 게임별 리뷰 개수 계산용
 export async function getAllReviews(): Promise<Review[]> {
     const res = await fetch(`${BASE_URL}/reviews`);
-    return res.json();
+    return parseResponse<Review[]>(res);
 }

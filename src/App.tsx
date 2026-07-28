@@ -5,24 +5,20 @@ import GameForm from './GameForm';
 import { Routes, Route, useNavigate, NavLink, Link } from 'react-router-dom';
 import BestRanking from './BestRanking';
 import { getGames, createGame, updateGame, deleteGame, getAllReviews } from './api';
-
-// API 호출 실패를 콘솔에 남기고 사용자에게 알린다.
-// TODO: alert()는 브라우저 UI를 막는 방식이라 UX상 아쉬움. 프로젝트가 커지면 토스트 컴포넌트로 교체할 것.
-function reportError(e: unknown, message: string) {
-    console.error(e);
-    alert(message);
-}
+import { reportError } from './errors';
+import Toast from './Toast';
 
 function App() {
     const [games, setGames] = useState<Game[]>([]);
     const [reviews, setReviews] = useState<Review[]>([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
         // 두 요청을 개별 catch로 처리하면 둘 다 실패했을 때 alert가 연달아 두 번 뜬다.
         // allSettled로 묶어서 실패한 것만 모아 한 번에 알린다.
-        Promise.allSettled([getGames(), getAllReviews()]).then(
-            ([gamesResult, reviewsResult]) => {
+        Promise.allSettled([getGames(), getAllReviews()])
+            .then(([gamesResult, reviewsResult]) => {
                 const failed: string[] = [];
                 if (gamesResult.status === "fulfilled") {
                     setGames(gamesResult.value);
@@ -37,10 +33,13 @@ function App() {
                     failed.push("리뷰 목록");
                 }
                 if (failed.length > 0) {
-                    alert(`${failed.join(", ")}을 불러오지 못했어요.`);
+                    // 개별 원인은 위에서 이미 console.error로 남겼으니, 여기선 null을 넘기고 메시지만 통합해서 알린다.
+                    reportError(null, `${failed.join(", ")}을 불러오지 못했어요.`);
                 }
-            }
-        );
+            })
+            // allSettled는 항상 resolve되니 지금은 .then만으로도 충분하지만,
+            // 나중에 로직이 바뀌어도 loading이 영원히 true로 남지 않도록 finally로 안전하게 처리한다.
+            .finally(() => setLoading(false));
     }, []);
 
     // 실패하면 원래 값을 그대로 유지한다(낙관적 업데이트가 아님).
@@ -95,12 +94,13 @@ function App() {
           </header>
           <main>
               <Routes>
-                  <Route path="/" element={<GameList games={games} reviews={reviews} onToggleLike={handleToggleLike} />} />
-                  <Route path="/best" element={<BestRanking games={games} reviews={reviews} />} />
+                  <Route path="/" element={<GameList games={games} reviews={reviews} loading={loading} onToggleLike={handleToggleLike} />} />
+                  <Route path="/best" element={<BestRanking games={games} reviews={reviews} loading={loading} />} />
                   <Route path="/new" element={<GameForm games={games} onSave={handleSave} onDelete={handleDelete} />} />
                   <Route path="/edit/:id" element={<GameForm games={games} onSave={handleSave} onDelete={handleDelete} />} />
               </Routes>
           </main>
+          <Toast />
       </>
   );
 }
