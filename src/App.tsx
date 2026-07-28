@@ -16,8 +16,8 @@ function App() {
     useEffect(() => {
         // 두 요청을 개별 catch로 처리하면 둘 다 실패했을 때 alert가 연달아 두 번 뜬다.
         // allSettled로 묶어서 실패한 것만 모아 한 번에 알린다.
-        Promise.allSettled([getGames(), getAllReviews()]).then(
-            ([gamesResult, reviewsResult]) => {
+        Promise.allSettled([getGames(), getAllReviews()])
+            .then(([gamesResult, reviewsResult]) => {
                 const failed: string[] = [];
                 if (gamesResult.status === "fulfilled") {
                     setGames(gamesResult.value);
@@ -34,9 +34,10 @@ function App() {
                 if (failed.length > 0) {
                     alert(`${failed.join(", ")}을 불러오지 못했어요.`);
                 }
-                setLoading(false);
-            }
-        );
+            })
+            // allSettled는 항상 resolve되니 지금은 .then만으로도 충분하지만,
+            // 나중에 로직이 바뀌어도 loading이 영원히 true로 남지 않도록 finally로 안전하게 처리한다.
+            .finally(() => setLoading(false));
     }, []);
 
     // 실패하면 원래 값을 그대로 유지한다(낙관적 업데이트가 아님).

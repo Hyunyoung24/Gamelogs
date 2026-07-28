@@ -116,10 +116,10 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                 {loading
                     ? Array.from({ length: 8 }).map((_, i) => (
                           <div className="card skeleton-card" key={i}>
-                              <div className="cover skeleton-block" />
+                              <div className="cover skeleton-block skeleton-animated" />
                               <div className="card-body">
-                                  <div className="skeleton-line skeleton-line-title" />
-                                  <div className="skeleton-line skeleton-line-meta" />
+                                  <div className="skeleton-line skeleton-line-title skeleton-animated" />
+                                  <div className="skeleton-line skeleton-line-meta skeleton-animated" />
                               </div>
                           </div>
                       ))

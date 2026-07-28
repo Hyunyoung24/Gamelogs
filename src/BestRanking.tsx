@@ -52,35 +52,35 @@ function BestRanking({ games, reviews, loading }: BestRankingProps) {
                 </span>
             </div>
             <div>
-                {loading &&
-                    Array.from({ length: 6 }).map((_, i) => (
-                        <div className="rank-row skeleton-card" key={i}>
-                            <span className="rank-num">&nbsp;</span>
-                            <div className="rank-info">
-                                <div className="skeleton-line skeleton-line-title" />
-                                <div className="skeleton-line skeleton-line-meta" />
-                            </div>
-                        </div>
-                    ))}
-                {!loading && sortedGames.map((game, index) => {
-                    const rating = averageRating(game.id, reviews);
-                    return (
-                        <div className="rank-row" key={game.id} onClick={() => setSelectedId(game.id)}>
-                            <div
-                                className="rank-cover"
-                                style={{ backgroundImage: `url('${game.image}')` }}
-                            />
-                            <span className="rank-num">{index + 1}</span>
-                            <div className="rank-info">
-                                <p className="rank-title">{game.title}</p>
-                                <p className="rank-genre">{game.genre.join(" · ")}</p>
-                            </div>
-                            <span className="rank-stat">
-                                {rating === 0 ? "리뷰 없음" : `★ ${rating.toFixed(1)}`}
-                            </span>
-                        </div>
-                    );
-                })}
+                {loading
+                    ? Array.from({ length: 6 }).map((_, i) => (
+                          <div className="rank-row skeleton-card" key={i}>
+                              <span className="rank-num">&nbsp;</span>
+                              <div className="rank-info">
+                                  <div className="skeleton-line skeleton-line-title skeleton-animated" />
+                                  <div className="skeleton-line skeleton-line-meta skeleton-animated" />
+                              </div>
+                          </div>
+                      ))
+                    : sortedGames.map((game, index) => {
+                          const rating = averageRating(game.id, reviews);
+                          return (
+                              <div className="rank-row" key={game.id} onClick={() => setSelectedId(game.id)}>
+                                  <div
+                                      className="rank-cover"
+                                      style={{ backgroundImage: `url('${game.image}')` }}
+                                  />
+                                  <span className="rank-num">{index + 1}</span>
+                                  <div className="rank-info">
+                                      <p className="rank-title">{game.title}</p>
+                                      <p className="rank-genre">{game.genre.join(" · ")}</p>
+                                  </div>
+                                  <span className="rank-stat">
+                                      {rating === 0 ? "리뷰 없음" : `★ ${rating.toFixed(1)}`}
+                                  </span>
+                              </div>
+                          );
+                      })}
             </div>
             <DetailModal game={selectedGame} onClose={() => setSelectedId(null)} />
         </div>
