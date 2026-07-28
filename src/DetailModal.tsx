@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Game, Review } from "./types";
 import { getReviews, createReview, deleteReview } from "./api";
 import { averageRating } from "./rating";
@@ -14,10 +14,14 @@ function DetailModal({ game, onClose }: DetailModalProps) {
     const [reviewsLoading, setReviewsLoading] = useState(false);
     const [newRating, setNewRating] = useState(5);
     const [newContent, setNewContent] = useState("");
+    // 마지막으로 리뷰를 성공적으로 불러온 게임 id. 같은 게임을 닫았다가 다시 열 때
+    // 불필요하게 다시 불러오면서 깜빡이는 걸 막기 위해 기록해둔다.
+    const loadedGameIdRef = useRef<number | null>(null);
 
     // 열려있는 게임(game.id)이 바뀔 때마다 그 게임의 리뷰를 새로 불러옴
     useEffect(() => {
         if (!game) return;
+        if (loadedGameIdRef.current === game.id) return;
         // 새 게임의 리뷰가 도착하기 전까지 이전 게임의 리뷰가 잠깐 남아있는 걸 방지
         setReviews([]);
         setReviewsLoading(true);
@@ -26,7 +30,10 @@ function DetailModal({ game, onClose }: DetailModalProps) {
         let cancelled = false;
         getReviews(game.id)
             .then((data) => {
-                if (!cancelled) setReviews(data);
+                if (!cancelled) {
+                    setReviews(data);
+                    loadedGameIdRef.current = game.id;
+                }
             })
             .catch((e) => {
                 if (!cancelled) reportError(e, "리뷰를 불러오지 못했어요.");

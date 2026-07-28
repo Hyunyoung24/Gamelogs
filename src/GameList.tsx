@@ -68,7 +68,7 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
         <>
             <h1 className="page-title">게임 목록</h1>
             <p className="page-sub">플레이한 게임을 평가하고 찜해보세요.</p>
-            <div className={`filter-bar ${loading ? "disabled" : ""}`}>
+            <div className={`filter-bar${loading ? " disabled" : ""}`}>
                 <div className="chips">
                     <span
                         className={`chip ${activeGenres.length === 0 ? "active" : ""}`}
