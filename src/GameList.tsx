@@ -126,6 +126,12 @@ function GameList({ games, reviews, loading, onToggleLike }: GameListProps) {
                 </div>
             </div>
 
+            {loading && (
+                <p className="loading-notice">
+                    무료 서버를 사용 중이라 첫 로딩이 다소 걸릴 수 있어요. 잠시만 기다려주세요.
+                </p>
+            )}
+
             <div className="grid">
                 {loading
                     ? Array.from({ length: SKELETON_CARD_COUNT }).map((_, i) => (

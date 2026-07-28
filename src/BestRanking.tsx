@@ -54,6 +54,11 @@ function BestRanking({ games, reviews, loading }: BestRankingProps) {
                     찜 많은 순
                 </span>
             </div>
+            {loading && (
+                <p className="loading-notice">
+                    무료 서버를 사용 중이라 첫 로딩이 다소 걸릴 수 있어요. 잠시만 기다려주세요.
+                </p>
+            )}
             <div>
                 {loading
                     ? Array.from({ length: SKELETON_ROW_COUNT }).map((_, i) => (
