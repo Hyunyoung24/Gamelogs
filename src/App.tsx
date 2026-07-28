@@ -5,17 +5,12 @@ import GameForm from './GameForm';
 import { Routes, Route, useNavigate, NavLink, Link } from 'react-router-dom';
 import BestRanking from './BestRanking';
 import { getGames, createGame, updateGame, deleteGame, getAllReviews } from './api';
-
-// API 호출 실패를 콘솔에 남기고 사용자에게 알린다.
-// TODO: alert()는 브라우저 UI를 막는 방식이라 UX상 아쉬움. 프로젝트가 커지면 토스트 컴포넌트로 교체할 것.
-function reportError(e: unknown, message: string) {
-    console.error(e);
-    alert(message);
-}
+import { reportError } from './errors';
 
 function App() {
     const [games, setGames] = useState<Game[]>([]);
     const [reviews, setReviews] = useState<Review[]>([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,6 +34,7 @@ function App() {
                 if (failed.length > 0) {
                     alert(`${failed.join(", ")}을 불러오지 못했어요.`);
                 }
+                setLoading(false);
             }
         );
     }, []);
@@ -95,8 +91,8 @@ function App() {
           </header>
           <main>
               <Routes>
-                  <Route path="/" element={<GameList games={games} reviews={reviews} onToggleLike={handleToggleLike} />} />
-                  <Route path="/best" element={<BestRanking games={games} reviews={reviews} />} />
+                  <Route path="/" element={<GameList games={games} reviews={reviews} loading={loading} onToggleLike={handleToggleLike} />} />
+                  <Route path="/best" element={<BestRanking games={games} reviews={reviews} loading={loading} />} />
                   <Route path="/new" element={<GameForm games={games} onSave={handleSave} onDelete={handleDelete} />} />
                   <Route path="/edit/:id" element={<GameForm games={games} onSave={handleSave} onDelete={handleDelete} />} />
               </Routes>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import type { Game, Review } from "./types";
 import { getReviews, createReview, deleteReview } from "./api";
 import { averageRating } from "./rating";
+import { reportError } from "./errors";
 
 interface DetailModalProps {
     game: Game | null;
@@ -16,7 +17,9 @@ function DetailModal({ game, onClose }: DetailModalProps) {
     // 열려있는 게임(game.id)이 바뀔 때마다 그 게임의 리뷰를 새로 불러옴
     useEffect(() => {
         if (!game) return;
-        getReviews(game.id).then(setReviews);
+        getReviews(game.id)
+            .then(setReviews)
+            .catch((e) => reportError(e, "리뷰를 불러오지 못했어요."));
     }, [game?.id]);
 
     if (!game) return null;
@@ -25,19 +28,27 @@ function DetailModal({ game, onClose }: DetailModalProps) {
 
     const handleAddReview = async () => {
         if (!newContent.trim()) return;
-        const review = await createReview({
-            gameId: game.id,
-            author: "나",
-            rating: newRating,
-            content: newContent,
-        });
-        setReviews((prev) => [...prev, review]);
-        setNewContent("");
+        try {
+            const review = await createReview({
+                gameId: game.id,
+                author: "나",
+                rating: newRating,
+                content: newContent,
+            });
+            setReviews((prev) => [...prev, review]);
+            setNewContent("");
+        } catch (e) {
+            reportError(e, "리뷰를 등록하지 못했어요.");
+        }
     };
 
     const handleDeleteReview = async (id: number) => {
-        await deleteReview(id);
-        setReviews((prev) => prev.filter((r) => r.id !== id));
+        try {
+            await deleteReview(id);
+            setReviews((prev) => prev.filter((r) => r.id !== id));
+        } catch (e) {
+            reportError(e, "리뷰를 삭제하지 못했어요.");
+        }
     };
 
     return (
